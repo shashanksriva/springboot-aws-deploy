@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.examplecode.springboot</groupId>
-	<artifactId>employee-crud-demo</artifactId>
+	<artifactId>springboot-aws-deploy</artifactId>
 	<version>1.0.0</version>
 
 	<properties>
