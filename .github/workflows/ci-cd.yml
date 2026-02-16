@@ -3,7 +3,7 @@ name: Deploy to Elastic Beanstalk
 on:
   push:
     branches:
-      - deploy-to-elastic-beanstalk
+      - master
 
 jobs:
   build-and-deploy:
@@ -14,8 +14,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: 'amazon-corretto'
+          java-version: '25'
       - name: Build Project
         run: mvn clean install -DskipTests
       - name: Deploy to EB
@@ -26,5 +26,5 @@ jobs:
           application_name: 'springboot-aws-deploy'
           environment_name: 'springboot-aws-deploy-env'
           version_label: ${{ github.sha }}
-          region: us-east-1
-          deployment_package: target/springboot-aws-deploy.jar
+          region: us-east-2
+          deployment_package: target/springboot-aws-deploy-1.0.0.jar
