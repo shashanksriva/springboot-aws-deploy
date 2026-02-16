@@ -3,7 +3,7 @@ name: Deploy to Elastic Beanstalk
 on:
   push:
     branches:
-      - master
+      - feature/deploy-using-eianregilsson
 
 jobs:
   build-and-deploy:
@@ -19,13 +19,12 @@ jobs:
       - name: Build Project
         run: mvn clean install -DskipTests
       - name: Deploy to EB
-        uses: aws-actions/aws-elasticbeanstalk-deploy@v1.0.0
+        uses: einaregilsson/beanstalk-deploy@v21
         with:
-          aws-region: us-east-2
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application-name: 'springboot-aws-deploy'
-          environment-name: 'springboot-aws-deploy-env'
-          version-label: ${{ github.sha }}
-#          region: us-east-2
+          application_name: 'springboot-aws-deploy'
+          environment_name: 'springboot-aws-deploy-env'
+          version_label: ${{ github.sha }}
+          region: us-east-2
           deployment_package: target/springboot-aws-deploy-1.0.0.jar
