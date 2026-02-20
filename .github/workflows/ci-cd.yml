@@ -99,13 +99,13 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/shashanksriva/spring-aws-deploy:${{ github.sha }} .
-          docker push ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/shashanksriva/spring-aws-deploy:${{ github.sha }}
+          docker build -t ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/shashanksriva/springboot-aws-deploy:${{ github.sha }} .
+          docker push ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/shashanksriva/springboot-aws-deploy:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy spring-app \
-            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/shashanksriva/spring-aws-deploy:${{ github.sha }} \
+            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/shashanksriva/springboot-aws-deploy:${{ github.sha }} \
             --region=${{ secrets.GCP_REGION }} \
             --platform=managed \
             --allow-unauthenticated \
