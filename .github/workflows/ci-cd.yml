@@ -71,7 +71,7 @@ name: Deploy to Cloud Run
 on:
   push:
     branches:
-      - main
+      - feature/deploy-to-gcp
 
 jobs:
   deploy:
